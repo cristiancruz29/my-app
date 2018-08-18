@@ -6,6 +6,9 @@ ENV WILDFLY_VERSION 13.0.0.Final
 ENV WILDFLY_SHA1 3d63b72d9479fea0e3462264dd2250ccd96435f9
 ENV JBOSS_HOME /opt/jboss/wildfly
 
+COPY target/*.deployed /opt/jboss/wildfly/standalone/configuration
+COPY target/*.xml /opt/jboss/wildfly/standalone/configuration
+
 USER root
 
 # Add the WildFly distribution to /opt, and make wildfly the owner of the extracted tar content
@@ -19,8 +22,7 @@ RUN cd $HOME \
     && chown -R jboss:0 ${JBOSS_HOME} \
     && chmod -R g+rw ${JBOSS_HOME}
     
-COPY target/*.deployed /opt/jboss/wildfly/standalone/configuration
-COPY target/*.xml /opt/jboss/wildfly/standalone/configuration
+
 
 # Ensure signals are forwarded to the JVM process correctly for graceful shutdown
 ENV LAUNCH_JBOSS_IN_BACKGROUND true
