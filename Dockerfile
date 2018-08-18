@@ -6,8 +6,8 @@ ENV WILDFLY_VERSION 13.0.0.Final
 ENV WILDFLY_SHA1 3d63b72d9479fea0e3462264dd2250ccd96435f9
 ENV JBOSS_HOME /opt/jboss/wildfly
 
-COPY target/*.deployed /opt/jboss/wildfly/standalone/configuration
-COPY target/*.xml /opt/jboss/wildfly/standalone/configuration
+COPY docker-app/*.deployed /opt/jboss/wildfly/standalone/deployments/
+COPY docker-app/*.xml /opt/jboss/wildfly/standalone/configuration/
 
 USER root
 
