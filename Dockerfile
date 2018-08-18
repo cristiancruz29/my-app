@@ -19,9 +19,6 @@ RUN cd $HOME \
     && chown -R jboss:0 ${JBOSS_HOME} \
     && chmod -R g+rw ${JBOSS_HOME}
 
-COPY /root/config_wildfly/*.xml /opt/jboss/wildfly/standalone/configuration/
-COPY /root/config_wildfly/*.ear /opt/jboss/wildfly/deployments/
-
 # Ensure signals are forwarded to the JVM process correctly for graceful shutdown
 ENV LAUNCH_JBOSS_IN_BACKGROUND true
 
