@@ -8,15 +8,15 @@ ENV WILDFLY_VERSION 12.0.0.Final
 # Make sure the distribution is available from a well-known place
 RUN cd $HOME && curl http://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-$WILDFLY_VERSION.tar.gz | tar zx && mv $HOME/wildfly-$WILDFLY_VERSION $HOME/wildfly
 
-COPY BusinessNetAdmin-0.0.1-SNAPSHOT.ear.deployed /opt/jboss/wildfly/standalone/deployments/
-COPY standalone-ha.xml /opt/jboss/wildfly/standalone/configuration/
+ADD BusinessNetAdmin-0.0.1-SNAPSHOT.ear.deployed /opt/jboss/wildfly/standalone/deployments/
+ADD standalone-ha.xml /opt/jboss/wildfly/standalone/configuration/
 
 # Set the JBOSS_HOME env variable
 ENV JBOSS_HOME /opt/jboss/wildfly
 
 # Expose the ports we're interested in
-EXPOSE 8080 9990
+EXPOSE 8282 9990
 
 # Set the default command to run on boot
 # This will boot WildFly in the standalone mode and bind to all interface
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0"]
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
