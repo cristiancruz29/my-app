@@ -9,7 +9,7 @@ ENV WILDFLY_VERSION 12.0.0.Final
 RUN cd $HOME && curl http://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-$WILDFLY_VERSION.tar.gz | tar zx && mv $HOME/wildfly-$WILDFLY_VERSION $HOME/wildfly
 
 ADD BusinessNetAdmin-0.0.1-SNAPSHOT.ear /opt/jboss/wildfly/standalone/deployments/
-ADD standalone-ha.xml /opt/jboss/wildfly/standalone/configuration/
+COPY configuration /opt/jboss/wildfly/standalone/configuration/
 ADD standalone.conf /opt/jboss/wildfly/bin/
 
 # Set the JBOSS_HOME env variable
