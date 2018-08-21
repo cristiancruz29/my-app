@@ -10,6 +10,7 @@ RUN cd $HOME && curl http://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-
 
 ADD BusinessNetAdmin-0.0.1-SNAPSHOT.ear /opt/jboss/wildfly/standalone/deployments/
 ADD standalone-ha.xml /opt/jboss/wildfly/standalone/configuration/
+ADD standalone.conf /opt/jboss/wildfly/bin/
 
 # Set the JBOSS_HOME env variable
 ENV JBOSS_HOME /opt/jboss/wildfly
@@ -17,6 +18,7 @@ ENV JBOSS_HOME /opt/jboss/wildfly
 # Expose the ports we're interested in
 EXPOSE 8282 9990
 
+RUN /opt/jboss/wildfly/bin/add-user.sh admin Admin#70365 --silent
 # Set the default command to run on boot
 # This will boot WildFly in the standalone mode and bind to all interface
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
