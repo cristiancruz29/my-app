@@ -23,4 +23,6 @@ EXPOSE 8282 9990
 # Set the default command to run on boot
 # This will boot WildFly in the standalone mode and bind to all interface
 
-CMD ["/opt/jboss/wildfly/bin/start-wildfly-empresa1.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+#CMD ["/opt/jboss/wildfly/bin/start-wildfly-empresa1.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-c", "0.0.0.0", "-Djboss.node.name=Admin-wildfly-empresa", "0.0.0.0"]
+
