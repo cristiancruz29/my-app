@@ -1,5 +1,5 @@
 # Use latest jboss/base-jdk:7 image as the base
-FROM jboss/base-jdk:7
+FROM jboss/base-jdk:8
 
 # Set the WILDFLY_VERSION env variable
 ENV WILDFLY_VERSION 12.0.0.Final
