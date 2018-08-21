@@ -8,7 +8,7 @@ ENV WILDFLY_VERSION 12.0.0.Final
 # Make sure the distribution is available from a well-known place
 RUN cd $HOME && curl http://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-$WILDFLY_VERSION.tar.gz | tar zx && mv $HOME/wildfly-$WILDFLY_VERSION $HOME/wildfly
 
-ADD BusinessNetAdmin-0.0.1-SNAPSHOT.ear.deployed /opt/jboss/wildfly/standalone/deployments/
+ADD /root/.jenkins/workspace/docker-app/BusinessNetAdmin-0.0.1-SNAPSHOT.ear /opt/jboss/wildfly/standalone/deployments/
 ADD standalone-ha.xml /opt/jboss/wildfly/standalone/configuration/
 
 # Set the JBOSS_HOME env variable
