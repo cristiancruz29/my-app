@@ -9,11 +9,11 @@ ENV WILDFLY_VERSION 12.0.0.Final
 #RUN cd $HOME && curl http://download.jboss.org/wildfly/$WILDFLY_VERSION/wildfly-$WILDFLY_VERSION.tar.gz | tar zx && mv $HOME/wildfly-$WILDFLY_VERSION $HOME/wildfly
 
 # ADD BusinessNetAdmin-0.0.1-SNAPSHOT.ear /opt/jboss/wildfly/standalone/deployments/
-COPY wildfly /opt/jboss/
+COPY wildfly /opt/wildfly/
 # ADD standalone.conf /opt/jboss/wildfly/bin/
 
 # Set the JBOSS_HOME env variable
-ENV JBOSS_HOME /opt/jboss/wildfly
+ENV JBOSS_HOME /opt/wildfly
 
 # Expose the ports we're interested in
 
@@ -24,5 +24,5 @@ EXPOSE 8282 9990
 # This will boot WildFly in the standalone mode and bind to all interface
 
 #CMD ["/opt/jboss/wildfly/bin/start-wildfly-empresa1.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-c", "0.0.0.0", "-Djboss.node.name=Admin-wildfly-empresa", "0.0.0.0"]
+CMD ["/opt/wildfly/bin/standalone.sh", "-c", "standalone-ha.xml", "-b", "0.0.0.0"]
 
